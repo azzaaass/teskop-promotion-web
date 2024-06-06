@@ -1,51 +1,81 @@
 <?php
-include ('../../helper/auth-helper.php');
+include ('../../config/config.php');
 
 include ('../templates/database.php');
 
-if (isset($_POST['add'])) {
-    $namaFile = $_FILES["gambar"]["name"];
-    $ukuranFile = $_FILES["gambar"]["size"];
-    $tmpName = $_FILES["gambar"]["tmp_name"];
-    $error = $_FILES["gambar"]["error"];
-
-    var_dump($namaFile);
+if (isset($_POST['update'])) {
+    
     $id = $_POST['id'];
-
-    $name = $_POST['name'];
-    $price = $_POST['price'];
+    $image_url = $_POST['image_url'];
     $description = $_POST['description'];
+    $price = $_POST['price'];
+    
+    if (isset($_FILES['gambar'])) {
+        $namaFile = $_FILES["gambar"]["name"];
+        $ukuranFile = $_FILES["gambar"]["size"];
+        $tmpName = $_FILES["gambar"]["tmp_name"];
+        $error = $_FILES["gambar"]["error"];
+    
+        $folderTujuan = "../../public/images/";
+        move_uploaded_file($tmpName, $folderTujuan . $namaFile);
+        $linkGambar = $folderTujuan . $namaFile;
+    
+        $result = mysqli_query($connection, "UPDATE blog SET image_url='$linkGambar', description='$description' ,name='$name', price='$price' WHERE id=$id");
+    } else {
 
-    $folderTujuan = "../../public/images/";
-    move_uploaded_file($tmpName, $folderTujuan . $namaFile);
-    $linkGambar = $folderTujuan . $namaFile;
+    }
 
-    $result = mysqli_query($connection, "INSERT INTO coffee(name, price, description, image_url) VALUES('$name','$price', '$description','$linkGambar')");
 
     header("Location: coffee-admin.php");
+
+} else {
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM blog WHERE id=" . $id;
+    $result = mysqli_query($connection, $sql);
+
+    $blogs = [];
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $blogs[] = [
+                'id' => $row['id'],
+                'image_url' => $row['image_url'],
+                'title' => $row['title'],
+                'description' => $row['description'],
+                'article' => $row['article']
+            ];
+        }
+        $blogs = $blogs[0];
+    } else {
+        echo "Data tidak ada";
+    }
+    mysqli_close($connection);
 }
 
-$title = 'Admin | Coffee add';
+$title = "Admin | Blog edit";
 include ('../templates/sidebarAdmin.php');
 ?>
-
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-        <form action="<?php echo BASE_URL; ?>/views/admin/coffee-add-admin.php" method="post"
+
+        <form action="<?php echo BASE_URL; ?>/views/admin/coffee-edit-admin.php" method="post"
             enctype="multipart/form-data">
-            <p class="font-semibold text-xl">Add</p>
+            <p class="font-semibold text-xl">Edit</p>
+            <br>
+            <img src="../../public/images/<?php echo $coffees['image_url'] ?>" alt="error" class="w-40">
             <br>
             <div class="grid gap-6 mb-6 md:grid-cols-2 w-[60%]">
+                <input type="text" name="id" value="<?php echo $coffees['id'] ?>" hidden>
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                    <input type="text" id="name" name="name"
+                    <input type="text" id="name" name="name" value="<?php echo $coffees['name'] ?>"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Type here" required />
                 </div>
                 <div>
                     <label for="price"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                    <input type="text" id="price" name="price"
+                    <input type="text" id="price" name="price" value="<?php echo $coffees['price'] ?>"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Rp 0" required />
                 </div>
@@ -67,7 +97,7 @@ include ('../templates/sidebarAdmin.php');
                         800x400px).</p>
                 </div>
             </div>
-            <button type="submit" name="add"
+            <button type="submit" name="update"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Submit</button>
             <a href="<?php echo BASE_URL; ?>/views/admin/coffee-admin.php"><button type="button"
                     class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Cancel</button></a>
