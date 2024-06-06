@@ -28,7 +28,7 @@ include ('../templates/sidebarAdmin.php');
 ?>
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-        <a href="<?php echo BASE_URL; ?>/views/admin/coffee-add-admin.php"><button type="button"
+        <a href="<?php echo BASE_URL; ?>/views/admin/blog-add-admin.php"><button type="button"
                 class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Add</button></a>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -53,7 +53,7 @@ include ('../templates/sidebarAdmin.php');
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="p-4">
-                                <img src="<?php echo $blog['image_url'] ?>" class="w-16 md:w-32 max-w-full max-h-full"
+                                <img src="../../public/images/<?php echo $blog['image_url'] ?>" class="w-16 md:w-32 max-w-full max-h-full"
                                     alt="blog">
                             </td>
                             <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">

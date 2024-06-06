@@ -21,9 +21,9 @@ if (mysqli_num_rows($result) > 0) {
     echo "0 hasil";
 }
 
-$title = "Admin | Coffee";
 mysqli_close($connection);
 
+$title = "Admin | Coffee";
 include ('../templates/sidebarAdmin.php');
 ?>
 <div class="p-4 sm:ml-64">
@@ -56,7 +56,7 @@ include ('../templates/sidebarAdmin.php');
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="p-4">
-                                <img src="<?php echo $coffee['image_url'] ?>" class="w-16 md:w-32 max-w-full max-h-full"
+                                <img src="../../public/images/<?php echo $coffee['image_url'] ?>" class="w-16 md:w-32 max-w-full max-h-full"
                                     alt="Apple Watch">
                             </td>
                             <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">

@@ -18,7 +18,7 @@ if (isset($_POST['add'])) {
 
     $folderTujuan = "../../public/images/";
     move_uploaded_file($tmpName, $folderTujuan . $namaFile);
-    $linkGambar = $folderTujuan . $namaFile;
+    $linkGambar = $namaFile;
 
     $result = mysqli_query($connection, "INSERT INTO coffee(name, price, description, image_url) VALUES('$name','$price', '$description','$linkGambar')");
 
