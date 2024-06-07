@@ -33,27 +33,27 @@ mysqli_close($connection);
             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                 <!-- Item 1 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="../public/images/kopi-1.png"
+                    <img src="https://source.unsplash.com/random/?coffee?sig=drink"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="../public/images/kopi-1.png"
+                    <img src="https://source.unsplash.com/random/?coffee?sig=coffee"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item="active">
-                    <img src="../public/images/kopi-1.png"
+                    <img src="https://source.unsplash.com/random/?coffee?sig=black"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 4 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="../public/images/kopi-1.png"
+                    <img src="https://source.unsplash.com/random/?coffee?sig=tumbler"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 5 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="../public/images/kopi-1.png"
+                    <img src="https://source.unsplash.com/random/?coffee?sig=water"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
             </div>
